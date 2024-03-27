@@ -1,0 +1,625 @@
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--defaultFont);
+  color: var(--defaultFontColor);
+}
+
+:root {
+  --leadingColor: #38b6ff;
+  --leadingColor2: #65c7ff;
+  --leadingColorHover: #83d1ff;
+  --shadow: 0 4px 6px #0000001a, 0 1px 3px #00000014;;
+  --defaultFont: Roboto;
+  --defaultFontColor: #000;
+  --theme: #ffffffc6;
+
+  --openModal: openModal 0.5s forwards;
+  --closeModal: closeModal 0.5s forwards;
+  --zoom: zoom 0.5s forwards;
+}
+
+h1, h2 { font-weight: lighter; }
+
+h1 { font-size: 27px; }
+
+h2 { font-size: 20px; }
+
+.loginModal0,
+.loginModal1,
+.modal0,
+.modal1 {
+  z-index: 4;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 600px;
+  padding: 20px;
+  opacity: 0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.loginModal0 .container,
+.loginModal1 .container,
+.modal0 .container,
+.modal1 .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loginModal0 .container .logo {
+  width: 100px;
+  height: 100px;
+  margin: 20px 0 20px 0;
+}
+
+.loginModal0 input,
+.loginModal1 input,
+.modal0 input,
+.modal1 input {
+  outline: 0;
+  width: 70%;
+  padding: 5px;
+  margin: 2.5px 0 2.5px 0;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: 2px solid #f0f0f0;
+}
+
+.modal1 {
+  width: 400px;
+  height: 150px;
+}
+
+#checkLogin {
+  width: 70%;
+  padding: 5px;
+  margin: 2.5px 0 2.5px 0;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid var(--leadingColor2);
+  background-color: var(--leadingColor);
+  transition: background 0.3s ease;
+}
+
+#checkLogin:hover {
+  background-color: var(--leadingColorHover);
+  transition: background 0.3s ease;
+}
+
+.startScreen {
+  z-index: 2;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  background-color: #fff;
+  transition: opacity 0.3s ease;
+}
+
+.startScreen .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  margin: 0 0 20px 0;
+}
+
+.sideBar {
+  z-index: 1;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10px;
+  box-shadow: var(--shadow);
+  background-color: var(--leadingColor);
+}
+
+.sideBar button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border: 0;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+  background-color: var(--leadingColor2);
+  transition: background 0.3s ease;
+}
+
+.sideBar button:hover {
+  background-color: var(--leadingColorHover);
+  transition: background 0.3s ease;
+}
+
+.sideBar button img {
+  width: 37px;
+  height: 37px;
+}
+
+.actionButtons,
+.logoutButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actionButtons { margin: 5px 0 0 0; }
+
+.actionButtons button { margin: 0 0 5px 0; }
+
+.logoutButtons { margin: 0 0 5px 0; }
+
+.logoutButtons button { margin: 5px 0 0 0; }
+
+section {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 20px 90px 20px 20px;
+  margin: 0 0 0 70px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searchArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  padding: 7.5px;
+  border-radius: 50px;
+  box-shadow: var(--shadow);
+  background-color: #fff;
+}
+
+.searchArea input {
+  outline: 0;
+  border: 0;
+  width: 100%;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.searchArea img {
+  width: 30px;
+  height: 30px;
+  filter: invert(59%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(93%) contrast(97%);
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.options button {
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  margin: 0 0 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+  background-color: #fff;
+  transition: background 0.3s ease;
+}
+
+.options button:hover {
+  background-color: var(--leadingColorHover);
+  transition: background 0.3s ease;
+}
+
+.options button img {
+  width: 33px;
+  height: 33px;
+}
+
+.options .account {
+  display: flex;
+  justify-content: space-around;
+  width: 100px;
+}
+
+.options .account img { border-radius: 50%; }
+
+.overlay {
+  z-index: 3;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-color: #00000095;
+  transition: 0.3s opacity ease;
+}
+
+.animationOverlay { opacity: 1; }
+
+#forgotPassword {
+  border: 0;
+  color: #000;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: transparent;
+  transition: color 0.3s ease;
+}
+
+#forgotPassword:hover {
+  color: var(--leadingColor);
+  transition: color 0.3s ease;
+}
+
+.loginModal0 .elements {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  margin: 0 0 15px 0;
+}
+
+.loginModal0 .content {
+  display: flex;
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  position: relative;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  margin: 0 5px 0 0;
+  border: 2px solid var(--leadingColor);
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--leadingColor);
+  transition: background 0.3s ease;
+}
+
+input[type="checkbox"]:checked:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+}
+
+#signupRedirect {
+  border: 0;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: transparent;
+  transition: color 0.3s ease;
+}
+#signupRedirect:hover {
+  color: var(--leadingColor);
+  transition: color 0.3s ease;
+}
+
+.alert {
+  text-align: center;
+  color: #ff0000;
+  margin: 10px 10px 20px 10px;
+}
+
+.loginModal1 .elements {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+}
+
+.loginModal1 .elements button {
+  border: 0;
+  width: 49.5%;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.signupCancel { background-color: #000; }
+
+.signupCancel:hover {
+  background-color: #666666;
+  transition: background 0.3s ease;
+}
+
+.signupConfirm { background-color: var(--leadingColor); }
+
+.signupConfirm:hover {
+  background-color: var(--leadingColorHover);
+  transition: background 0.3s ease;
+}
+
+.loginModal1 .sliderContainer {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 142px;
+}
+
+.loginModal1 .slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0 0 0;
+}
+
+.loginModal1 .arrow {
+  border: 0;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.loginModal1 .arrow img {
+  width: 25px;
+  height: 25px;
+}
+
+.loginModal1 .profilePics {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.loginModal1.sliderItem {
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.loginModal1 .sliderItem img {
+  width: 142px;
+  height: 142px;
+  border-radius: 100%;
+}
+
+.loginModal1 .arrowForward { margin: 0 0 0 20px; }
+
+.loginModal1 .arrowBack { margin: 0 20px 0 0; }
+
+.dialog {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 90%;
+}
+
+.modal0 .elements {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal0 .dialog {
+  width: 70%;
+  justify-content: space-between;
+}
+
+.cancel,
+.confirm {
+  border: 0;
+  width: 49.5%;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.cancel { background-color: #000; }
+
+.cancel:hover {
+  background-color: #666666;
+  transition: background 0.3s ease;
+}
+
+.confirm { background-color: var(--leadingColor); }
+
+.confirm:hover {
+  background-color: var(--leadingColorHover);
+  transition: background 0.3s ease;
+}
+
+.modal1 .dialog {
+  display: flex;
+  align-items: center;
+  top: 65%;
+  width: 62%;
+  justify-content: space-between;
+}
+
+.modal1 .elements {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#folders { margin: 5px 0 0 0; }
+
+.folder {
+  border: 0;
+  width: 125px;
+  padding: 10px;
+  cursor: pointer;
+  margin: 5px 5px 0 0;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--leadingColor2);
+  transition: background 0.3s ease;
+  animation: var(--zoom);
+}
+
+.activeFolderButton {
+  background-color: var(--leadingColorHover);
+  transition: background 0.3s ease;
+}
+
+.folderContainer {
+  display: none;
+  margin: 5px 0 0 0;
+}
+
+.activeFolderContainer { display: block; }
+
+.noteThumbnail {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+  padding: 10px 0 10px 10px;
+  margin: 5px 10px 0 0;
+  overflow-y: scroll;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: 2px solid #f0f0f0;
+  transition: background 0.3s ease, border 0.3s ease, transform 0.3s ease;
+  animation: var(--zoom);
+}
+
+.noteThumbnail::-webkit-scrollbar-track,
+.noteText::-webkit-scrollbar-track { background-color: transparent; }
+
+.noteThumbnail::-webkit-scrollbar,
+.noteText::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+
+.noteThumbnail::-webkit-scrollbar-thumb,
+.noteText:-webkit-scrollbar-thumb {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+#lastNotes {
+  margin: 10px 0 0 0;
+}
+
+.noteThumbnail textarea {
+  border: 0;
+  outline: 0;
+  height: 120px;
+  cursor: pointer;
+  resize: none;
+  background-color: transparent;
+}
+
+#previewFolders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.previewFolder,
+.previewSubfolder {
+  border: 0;
+  display: flex;
+  align-items: center;
+  width: 70%;
+  padding: 5px;
+  margin: 5px 0 0 0;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid #f0f0f0;
+  background-color: #fff;
+  transition: background 0.3s ease, border 0.3s ease, transform 0.3s ease;
+}
+
+.previewFolder img,
+.previewSubfolder img {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px 0 0;
+}
+
+.subfolderArea {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  border-left: 3px solid #f0f0f0;
+}
+
+.subfolderArea .previewFolder {
+  width: 100%;
+  margin: 5px 0 0 10px;
+}
+
+.branch {
+  width: 30px;
+  height: 30px;
+}
+
+#subfolders {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.activePreviewFolder {
+  background-color: var(--leadingColorHover);
+  border: 2px solid var(--leadingColor2);
+  transition: background 0.3s ease, border 0.3s ease, transform 0.3s ease;
+}
+
+.allPreviewFolders {
+  height: 400px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+#lastNotes .container,
+.folderContainer .container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}

@@ -1,0 +1,120 @@
+@keyframes openModal {
+  from {
+    top: 60%;
+    opacity: 0;
+  }
+  to {
+    top: 50%;
+    opacity: 1;
+  }
+}
+
+@keyframes closeModal {
+  from {
+    top: 50%;
+    opacity: 1;
+  }
+  to {
+    top: 60%;
+    opacity: 0;
+  }
+} 
+
+@keyframes switchModalOff {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes switchModalOn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes global {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes content {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes loading {
+  from {width: 0%;}
+  to {width: 100%;}
+}
+
+@keyframes checkBox {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes checkBox_reverse {
+  from { transform: scale(1); }
+  to { transform: scale(0); }
+}
+
+@keyframes openContextMenu {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-50px);
+    opacity: 1;
+  }
+}
+
+@keyframes closeContextMenu {
+  from {
+    transform: translateY(-50px);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+}
+
+@keyframes openModal {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes closeModal {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes specialZoom {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to { transform: translate(-50%, -50%) scale(0); }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}

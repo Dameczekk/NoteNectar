@@ -1,0 +1,12 @@
+@media only screen and (max-width: 800px) {
+  .loginModal0,
+  .loginModal1 {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.hidden { display: none; }
+.modal__Animation { animation: var(--openModal); }
+.activeSection { display: block; }
+.highlighted { border: 2px solid #ff0000 !important; }

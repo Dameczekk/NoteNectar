@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="src/css/animations.css">
+  <link rel="stylesheet" href="src/css/style.css">
+  <link rel="stylesheet" href="src/css/responsive.css">
+  <link rel="stylesheet" href="src/css/loaders.css">
+  <title>NoteNectar</title>
+</head>
+<body>
+  <div class="modals">
+    <div class="loginModal0 hidden">
+      <div class="container">
+        <h1>Log in</h1>
+        <img class="logo" src="assets/img/pics/logo.png" alt="Logo">
+        <input class="usernameInput" type="text" placeholder="Login">
+        <input class="passwordInput" type="password" placeholder="Password">
+        <button id="checkLogin">Login</button>
+        <div class="elements">
+          <div class="content">
+            <input class="rememberInput" type="checkbox">
+            <span>Remember me</span>
+          </div>
+          <button id="forgotPassword">Forgot password?</button>
+        </div>
+        <span class="alert"></span>
+        <span>Don't have account?</span>      
+        <button id="signupRedirect">Sign up</button>
+      </div>
+    </div>
+    <div class="loginModal1 hidden">
+      <div class="container">
+        <h1>Sign up</h1>
+        <div class="slider">
+          <button class="arrowBack arrow"><img src="assets/img/icons/left.svg" alt="ArrowBack icon"></button>
+          <div class="sliderContainer"><div class="profilePics"></div></div>
+          <button class="arrowForward arrow"><img src="assets/img/icons/right.svg" alt="ArrowBack icon"></button>
+        </div>
+        <input class="usernameInput" type="text" placeholder="Username">
+        <input class="passwordInput" type="password" placeholder="Password">
+        <input class="confirmPasswordInput" type="password" placeholder="Confirm password">
+        <input class="codeInput" type="password" placeholder="Enter PIN">
+        <div class="elements">
+          <button class="signupCancel">cancel</button>
+          <button class="signupConfirm">sign up</button>
+        </div>
+        <span class="alert"></span>
+      </div>
+    </div>
+    <div class="modal0 hidden">
+      <div class="container">
+        <h1>Add new note</h1>
+        <input class="nameInput" type="text" placeholder="Name">
+        <h2>Choose a folder</h2>
+        <div class="allPreviewFolders">
+          <div id="previewFolders">
+            <button class="previewFolder" id="previewLastNotes">
+              <img src="assets/img/icons/folder.svg" alt="Folder icon">
+              <span>lastNotes</span>
+            </button>
+            <template class="previewFolderPattern">
+              <button class="previewFolder">
+                <img src="assets/img/icons/folder.svg" alt="Folder icon">
+                <span></span>
+              </button>
+            </template>
+          </div>
+          <div id="subfolders">
+            <template class="subfolderPattern">
+              <div class="subfolderArea">
+                <img class="branch" src="assets/img/pics/branch.png" alt="Branch icon">
+                <button class="previewFolder">
+                  <img src="assets/img/icons/folder.svg" alt="Folder icon">
+                  <span></span>
+                </button>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+      <div class="elements">
+        <div class="dialog">
+          <button class="cancel">cancel</button>
+          <button class="confirm">confirm</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal1 hidden">
+      <div class="container">
+        <h1>Add new folder</h1>
+        <input class="nameInput" type="text" placeholder="Name">
+      </div>
+      <div class="elements">
+        <div class="dialog">
+          <button class="cancel">cancel</button>
+          <button class="confirm">confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="startScreen">
+    <div class="container">
+      <img class="logo" src="assets/img/pics/logo.png" alt="Logo">
+      <div class="loader"></div>
+    </div>
+  </div>
+  <main>
+    <aside class="sideBar">
+      <div class="actionButtons">
+        <button><img src="assets/img/icons/dashboard.svg" alt="Dashboard icon"></button>
+        <button><img src="assets/img/icons/settings.svg" alt="Settings icon"></button>
+        <button><img src="assets/img/icons/archives.svg" alt="Archives icon"></button>
+      </div>
+      <div class="logoutButtons">
+        <button id="logoutButton"><img src="assets/img/icons/logout.svg" alt="Logout icon"></button>
+      </div>
+    </aside>
+    <section class="section0">
+      <nav>
+        <div>
+          <div class="searchArea">
+            <img src="assets/img/icons/search.svg" alt="Search icon">
+            <input type="text" placeholder="Search">
+          </div>
+        </div>
+        <div class="options">
+          <button id="addFolderButton"><img src="assets/img/icons/add__Folder.svg" alt="Add folder icon"></button>
+          <button id="addNoteButton"><img src="assets/img/icons/add.svg" alt="Add icon"></button>
+          <button><img src="assets/img/icons/notifications.svg" alt="Notification icon"></button>
+          <button><img src="assets/img/icons/account.svg" alt="Account icon"></button>
+          <button class="account">
+            <img class="accountPics" src="" alt="Account picture">
+            <span class="accountUsernames"></span>
+          </button>
+        </div>
+      </nav>
+      <div id="lastNotes">
+        <div class="container"></div>
+      </div>
+      <div id="folders">
+        <template class="folderPattern"><button class="folder"></button></template>
+      </div>
+      <div id="foldersContainers">
+        <template class="folderContainerPattern"><div class="folderContainer"><div class="container"></div></div></template>
+      </div>
+    </section>
+    <section class="section1 hidden">
+      <h1>Workspace</h1>
+    </section>
+  </main>
+  <div class="overlay hidden"></div>
+  <script src="src/js/datas.js"></script>
+  <script src="src/js/app.js"></script>
+  <script src="src/js/main.js"></script>
+</body>
+</html>
