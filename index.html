@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NoteNectar - better notes and docs">
+  <meta name="keywords" content="note, notes, note app">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="src/css/animations.css">
@@ -12,6 +14,21 @@
   <title>NoteNectar</title>
 </head>
 <body>
+  <div class="contexts">
+    <div class="noteContext">
+      <ul>
+        <li id="delete">Delete</li>
+        <li id="archive">Archive</li>
+        <li id="view">View</li>
+        <li id="edit">Edit</li>
+      </ul>
+    </div>
+    <div class="folderContext">
+      <ul>
+        <li id="delete">Delete</li>
+      </ul>
+    </div>
+  </div>
   <div class="modals">
     <div class="loginModal0 hidden">
       <div class="container">
@@ -54,11 +71,11 @@
     <div class="modal0 hidden">
       <div class="container">
         <h1>Add new note</h1>
-        <input class="nameInput" type="text" placeholder="Name">
+        <input class="nameInput" value="New Note" type="text" placeholder="Name">
         <h2>Choose a folder</h2>
         <div class="allPreviewFolders">
           <div id="previewFolders">
-            <button class="previewFolder" id="previewLastNotes">
+            <button class="previewFolder" id="previewQuickNotes">
               <img src="assets/img/icons/folder.svg" alt="Folder icon">
               <span>lastNotes</span>
             </button>
@@ -101,6 +118,30 @@
         </div>
       </div>
     </div>
+    <div class="modal2 hidden">
+      <div class="container">
+        <h1>Are you sure, you want to delete this note?</h1>
+        <div class="elements">
+          <div class="dialog">
+            <button class="cancel">cancel</button>
+            <button class="confirm">confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal3 hidden">
+      <div class="container">
+        <h1>Settings</h1>
+        <div class="switchElements">
+          <button class="switch"><div class="switchElement"></div></button>
+          <span>Dark theme (disabled)</span>
+        </div>
+        <div class="dialog">
+          <button class="cancel">cancel</button>
+          <button class="confirm">confirm</button>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="startScreen">
     <div class="container">
@@ -109,11 +150,128 @@
     </div>
   </div>
   <main>
+    <aside class="toolBar toolBarHidden">
+      <div class="tools">
+        <h1 class="title">Tools</h1>
+        <div class="buttons">
+          <button>
+            <img src="assets/img/icons/add.svg" alt="Add icon">
+            <span>Add page</span>
+          </button>
+          <button>
+            <img src="assets/img/icons/themes.svg" alt="Themes icon">
+            <span>Themes</span>
+          </button>
+          <button>
+            <img src="assets/img/icons/fonts.svg" alt="Fonts icon">
+            <span>Headlines</span>
+          </button>
+          <button>
+            <img src="assets/img/icons/lists.svg" alt="Text icon">
+            <span>Text</span>
+          </button>
+          <button>
+            <img src="assets/img/icons/attach.svg" alt="Attach icon">
+            <span>Attach</span>
+          </button>
+          <a id="downloadButton">
+            <img src="assets/img/icons/download.svg" alt="Download icon">
+            <span>Download</span>
+          </a>
+        </div>
+      </div>
+      <div class="tool" id="tool0">
+        <div class="title">
+          <button class="back"><img src="assets/img/icons/left.svg" alt="Left icon"></button>
+          <h1>Add new page</h1>
+        </div>
+        <div class="container">
+        </div>
+      </div>
+      <div class="tool" id="tool1">
+        <div class="title">
+          <button class="back"><img src="assets/img/icons/left.svg" alt="Left icon"></button>
+          <h1>Themes</h1>
+        </div>
+        <div class="container">
+          <h2>Background color</h2>
+          <hr class="separator">
+          <div class="colors">
+            <button id="backgroundColor0" class="backgroundColor"><div class="selectedBackgroundColor"></div></button>
+            <button id="backgroundColor1" class="backgroundColor"></button>
+            <button id="backgroundColor2" class="backgroundColor"></button>
+            <button id="backgroundColor3" class="backgroundColor"></button>
+            <button id="backgroundColor4" class="backgroundColor"></button>
+            <button id="backgroundColor5" class="backgroundColor"></button>
+            <button id="backgroundColor6" class="backgroundColor"></button>
+            <button id="backgroundColor7" class="backgroundColor"></button>
+            <button id="backgroundColor8" class="backgroundColor"></button>
+            <button id="backgroundColor9" class="backgroundColor"></button>
+            <button id="backgroundColor10" class="backgroundColor"></button>
+            <button id="backgroundColor11" class="backgroundColor"></button>
+            <button id="backgroundColor12" class="backgroundColor"></button>
+            <button id="backgroundColor13" class="backgroundColor"></button>
+          </div>
+          <h2>Text color</h2>
+          <hr class="separator">
+          <div class="colors">
+            <button id="textColor0" class="textColor"><div class="selectedTextColor"></div></button>
+            <button id="textColor1" class="textColor"></button>
+          </div>
+        </div>
+      </div>
+      <div class="tool" id="tool2">
+        <div class="title">
+          <button class="back"><img src="assets/img/icons/left.svg" alt="Left icon"></button>
+          <h1>Headlines</h1>
+        </div>
+        <div class="container">
+
+        </div>
+      </div>
+      <div class="tool" id="tool3">
+        <div class="title">
+          <button class="back"><img src="assets/img/icons/left.svg" alt="Left icon"></button>
+          <h1>Text</h1>
+        </div>
+        <div class="container">
+          <h2>Formatting</h2>
+          <div class="sector">
+            <button id="formatText0"><img src="assets/img/icons/formatItalic.svg" alt="Italic format icon"></button>
+            <button id="formatText1"><img src="assets/img/icons/formatBold.svg" alt="Bold format icon"></button>
+            <button id="formatText2"><img src="assets/img/icons/formatUnderlined1.svg" alt="Underlined format icon"></button>
+            <button id="formatText3"><img src="assets/img/icons/colors.svg" alt="colors format icon"></button>
+            <button id="formatText4"><img src="assets/img/icons/formatList.svg" alt="Lists format icon"></button>
+            <button id="formatText5"><img src="assets/img/icons/formatListNumbered.svg" alt="Lists format numbered icon"></button>
+          </div>
+          <h2>Positioning</h2>
+          <div>
+            <button id="formatAlign0"><img src="assets/img/icons/formatAlignLeft.svg" alt="Format align left icon"></button>
+            <button id="formatAlign1"><img src="assets/img/icons/formatAlignCenter.svg" alt="Format align center icon"></button>
+            <button id="formatAlign2"><img src="assets/img/icons/formatAlignRight.svg" alt="Format align right icon"></button>
+            <button id="formatAlign3"><img src="assets/img/icons/formatAlignJustify.svg" alt="Format align justify icon"></button>
+          </div>
+        </div>
+      </div>
+      <div class="tool" id="tool2">
+        <div class="title">
+          <button class="back"><img src="assets/img/icons/left.svg" alt="Left icon"></button>
+          <h1>Attach</h1>
+        </div>
+        <div class="container">
+
+        </div>
+      </div>
+    </aside>
     <aside class="sideBar">
       <div class="actionButtons">
-        <button><img src="assets/img/icons/dashboard.svg" alt="Dashboard icon"></button>
-        <button><img src="assets/img/icons/settings.svg" alt="Settings icon"></button>
-        <button><img src="assets/img/icons/archives.svg" alt="Archives icon"></button>
+        <button id="dashboardButton"><img src="assets/img/icons/dashboard.svg" alt="Dashboard icon"></button>
+        <button id="settingsButton"><img src="assets/img/icons/settings.svg" alt="Settings icon"></button>
+        <button id="archivesButton"><img src="assets/img/icons/archives.svg" alt="Archives icon"></button>
+      </div>
+      <div class="workspaceButtons workspaceButtonsHidden">
+        <button id="deleteButton"><img src="assets/img/icons/delete.svg" alt="Delete icon"></button>
+        <button id="toggleArrowButton"><img src="assets/img/icons/left.svg" alt="Arrow icon"></button>
       </div>
       <div class="logoutButtons">
         <button id="logoutButton"><img src="assets/img/icons/logout.svg" alt="Logout icon"></button>
@@ -124,37 +282,59 @@
         <div>
           <div class="searchArea">
             <img src="assets/img/icons/search.svg" alt="Search icon">
-            <input type="text" placeholder="Search">
+            <input id="searchInput" type="text" placeholder="Search">
           </div>
         </div>
         <div class="options">
           <button id="addFolderButton"><img src="assets/img/icons/add__Folder.svg" alt="Add folder icon"></button>
           <button id="addNoteButton"><img src="assets/img/icons/add.svg" alt="Add icon"></button>
           <button><img src="assets/img/icons/notifications.svg" alt="Notification icon"></button>
-          <button><img src="assets/img/icons/account.svg" alt="Account icon"></button>
           <button class="account">
             <img class="accountPics" src="" alt="Account picture">
             <span class="accountUsernames"></span>
           </button>
         </div>
       </nav>
-      <div id="lastNotes">
+      <div id="quickNotes">
         <div class="container"></div>
       </div>
       <div id="folders">
         <template class="folderPattern"><button class="folder"></button></template>
       </div>
       <div id="foldersContainers">
-        <template class="folderContainerPattern"><div class="folderContainer"><div class="container"></div></div></template>
+        <template class="folderContainerPattern"><div class="folderContainer"><div class="container"><h2>Nothing here yet</h2></div></div></template>
       </div>
     </section>
     <section class="section1 hidden">
-      <h1>Workspace</h1>
+      <template class="workspacePattern">
+        <div class="workspace hidden">
+          <h1 class="path">Root/New_Note/Page0</h1>
+          <div class="elements">
+            <h2 class="lastEdit">Last edit 3 hours ago</h2>
+            <h2 class="author">author</h2>
+          </div>
+          <div class="noteContainer">
+            <div class="elements">
+              <input class="noteName" type="text">
+              <div>
+                <button title="Carousel"><img src="assets/img/icons/carousel.svg" alt="Carousel icon"></button>
+                <button title="Previous page"><img src="assets/img/icons/undo.svg" alt="Undo icon"></button>
+                <button title="Next page"><img src="assets/img/icons/redo.svg" alt="Redo icon"></button>
+              </div>
+            </div>
+            <div class="noteArea" contenteditable="true"></div>
+          </div>
+        </div>
+      </template>
+    </section>
+    <section class="section2 hidden">
+      <h1>Archive notes</h1>
     </section>
   </main>
   <div class="overlay hidden"></div>
   <script src="src/js/datas.js"></script>
   <script src="src/js/app.js"></script>
   <script src="src/js/main.js"></script>
+  <script src="src/js/workspace.js"></script>
 </body>
 </html>

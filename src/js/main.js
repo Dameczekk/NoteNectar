@@ -28,13 +28,45 @@ const loadLongElements = () => {
   });
 };
 
-const launchPanel = () => {
+const manageStartScreen = (action) => {
   const startScreen = document.querySelector('.startScreen');
 
-  startScreen.style.opacity = 0;
-  setTimeout(() => startScreen.classList.add('hidden'), 300);
+  if (action == 'show') {
+    startScreen.classList.remove('hidden')
+    setTimeout(() => startScreen.style.opacity = 1, 30);
+  } else if (action == 'hidden') {
+    startScreen.style.opacity = 0;
+    setTimeout(() => startScreen.classList.add('hidden'), 300);
+  }
+}
 
+const noteNames = [
+  "Blue Dog Note",
+  "Green Elephant Note",
+  "Red Tiger Note",
+  "Yellow Giraffe Note",
+  "Orange Banana Note",
+  "Black Lion Note",
+  "Gray Apple Note",
+  "Purple Monkey Note",
+  "White Carrot Note",
+  "Pink Cat Note",
+];
+
+const launchPanel = () => {
+  manageStartScreen('hidden');
   loadData();
+  toggleModal(3);
+
+  for (let i = 0; i < 100; i++) {
+    document.querySelector('.modal0 .nameInput').value = noteNames[Math.floor(Math.random()*noteNames.length)];
+    const noteThumbnails = document.querySelectorAll('.noteThumbnail');
+
+  noteThumbnails.forEach(thumbnail => {
+    thumbnail.style.background = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  });
+    createNote();
+  }
 }
 
 window.addEventListener('DOMContentLoaded', main);

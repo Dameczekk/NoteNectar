@@ -10,13 +10,20 @@ const userData = getUserDataFromCookie('noten_userData', {
   dates: [],
   pics: [],
   panelRunnable: false,
-  accountIndex: -1
+  accountIndex: -1,
+  darkTheme: []
 });
 
-const foldersData = getUserDataFromCookie('noten_foldersData', {
+const accountFolders = getUserDataFromCookie('noten_accountFolders', [
+
+]);
+
+const foldersData = {
   names: ['root'],
   ids: ['folder0']
-});
+};
+
+const numbersNotes = [];
 
 const setCookie = (name, value, path = '/') => {
   document.cookie = name + "=" + value + ";expires=Fri, 31 Dec 9999 23:59:59 GMT;path=" + path
@@ -42,8 +49,10 @@ function getCookie(name) {
 }
 
 const userDataReload = () => {
-  setCookie('noten_userData', JSON.stringify(userData));
-  setCookie('noten_foldersData', JSON.stringify(foldersData));
+  const path = '/noten.html';
+  setCookie('noten_userData', JSON.stringify(userData), path);
+  setCookie('noten_foldersData', JSON.stringify(foldersData), path);
+  setCookie('noten_accountFolders', JSON.stringify(accountFolders), path);
 };
 
 const createNewAccount = () => {
@@ -61,6 +70,9 @@ const createNewAccount = () => {
   userData.codes.push(codeInput.value);
   userData.pics.push(`assets/img/avatars/person${currentImageIndex}`);
   userData.dates.push(`${day}.${month}.${year}`);
+  userData.darkTheme.push(false);
+
+  accountFolders.push(foldersData);
 
   userDataReload();
 }
@@ -70,6 +82,8 @@ const saveFolder = (name  = false) => {
 
   name == false ? foldersData.names.push(nameInput.value) : foldersData.names.push(name);
   foldersData.ids.push(`folder${folderId}`);
+
+  accountFolders[userData.accountIndex] = foldersData;
 
   userDataReload();
 }
@@ -81,14 +95,6 @@ const loadData = () => {
   accountPics.forEach((element) => element.setAttribute('src', `${userData.pics[userData.accountIndex]}.png`));
   accountUsernames.forEach((element) => element.textContent = userData.usernames[userData.accountIndex]);
 
-
-  for (let i = 0; i < foldersData.ids.length; i++) {
-    if (i == 0) {
-      createFolder(foldersData.names[i], true, true, 'folder', true, true);
-    } else {
-      createFolder(foldersData.names[i], false, false, 'subfolder', false, true);
-    }
-  }
-
+  darkTheme();
   userDataReload();
 }

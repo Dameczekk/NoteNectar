@@ -10,3 +10,8 @@
 .modal__Animation { animation: var(--openModal); }
 .activeSection { display: block; }
 .highlighted { border: 2px solid #ff0000 !important; }
+.activeFormat {
+  background-color: var(--leadingColor2) !important;
+  border: 2px solid var(--leadingColor) !important;
+  transition: background 0.3s ease, border 0.3s ease;
+};

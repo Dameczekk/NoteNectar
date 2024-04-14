@@ -1,0 +1,61 @@
+:root {
+  --darkThemeColor: #333333;
+  --darkThemeFonts: #ffffff;
+  --darkThemeImg: invert(100%);
+}
+
+section,
+body,
+.toolBar,
+.tool,
+.tool .title,
+.options button,
+.startScreen {
+  background-color: var(--darkThemeColor)
+}
+
+.options button img,
+.searchArea img {
+  filter: var(--darkThemeImg);
+}
+
+.toolBar button span,
+.toolBar a span,
+.toolBar .title,
+.options .account span,
+.noteContainer .noteName,
+.folderContainer .container h2,
+.searchArea input,
+.tool .container h2 {
+  color: var(--darkThemeFonts);
+}
+
+.options .account img { filter: invert(0); }
+
+.options button,
+.searchArea {
+  border: 2px solid var(--leadingColor);
+}
+
+.tools button img,
+.tools a img,
+.noteContainer button img,
+.title img { filter: var(--darkThemeImg); }
+
+.folder,
+.title h1,
+.tool3 .container button,
+.path,
+.elements .lastEdit,
+.elements .author,
+.noteContainer,
+.toolBar,
+.searchArea {
+  background-color: var(--darkThemeColor);
+  color: var(--darkThemeFonts);
+}
+
+.tool .container .sector button {
+  background-color: var(--darkThemeColor);
+  color: var(--darkThemeFonts);
+}

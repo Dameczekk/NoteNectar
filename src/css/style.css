@@ -12,7 +12,8 @@
   --leadingColor: #38b6ff;
   --leadingColor2: #65c7ff;
   --leadingColorHover: #83d1ff;
-  --shadow: 0 4px 6px #0000001a, 0 1px 3px #00000014;;
+  --shadow0: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  --shadow: #00000014 0px 4px 12px;
   --defaultFont: Roboto;
   --defaultFontColor: #000;
   --theme: #ffffffc6;
@@ -31,7 +32,9 @@ h2 { font-size: 20px; }
 .loginModal0,
 .loginModal1,
 .modal0,
-.modal1 {
+.modal1,
+.modal2,
+.modal3 {
   z-index: 4;
   position: fixed;
   top: 50%;
@@ -61,6 +64,43 @@ h2 { font-size: 20px; }
   height: 100px;
   margin: 20px 0 20px 0;
 }
+
+.modal2 {
+  width: 500px;
+  height: 200px;
+}
+
+.modal2 .container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.modal2 .dialog {
+  width: 70%;
+  top: 70%;
+}
+
+.modal2 .dialog .cancel { margin: 0 2.5px 0 0; }
+.modal2 .dialog .confirm { margin: 0 0 0 2.5px; }
+
+.modal2  .elements {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal3 {
+  width: 700px;
+  height: 500px;
+}
+
+.modal3 .dialog {
+  width: 35%;
+}
+
+.modal3 .dialog .cancel { margin: 0 2.5px 0 0; }
+.modal3 .dialog .confirm { margin: 0 0 0 2.5px; }
 
 .loginModal0 input,
 .loginModal1 input,
@@ -100,7 +140,7 @@ h2 { font-size: 20px; }
 }
 
 .startScreen {
-  z-index: 2;
+  z-index: 3;
   position: fixed;
   display: flex;
   justify-content: center;
@@ -109,7 +149,7 @@ h2 { font-size: 20px; }
   height: 100%;
   opacity: 1;
   background-color: #fff;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, background 0.3s;
 }
 
 .startScreen .container {
@@ -146,7 +186,7 @@ h2 { font-size: 20px; }
   border: 0;
   cursor: pointer;
   border-radius: 5px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow0);
   background-color: var(--leadingColor2);
   transition: background 0.3s ease;
 }
@@ -182,6 +222,8 @@ section {
   height: 100%;
   padding: 20px 90px 20px 20px;
   margin: 0 0 0 70px;
+  transition: 0.5s ease;
+  animation: content 1s forwards;
 }
 
 nav {
@@ -197,7 +239,7 @@ nav {
   width: 300px;
   padding: 7.5px;
   border-radius: 50px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow0);
   background-color: #fff;
 }
 
@@ -208,6 +250,7 @@ nav {
   padding: 5px;
   font-size: 16px;
   border-radius: 10px;
+  background-color: transparent;
 }
 
 .searchArea img {
@@ -232,7 +275,7 @@ nav {
   margin: 0 0 0 5px;
   cursor: pointer;
   border-radius: 5px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow0);
   background-color: #fff;
   transition: background 0.3s ease;
 }
@@ -488,16 +531,16 @@ input[type="checkbox"]:checked:after {
   cursor: pointer;
   margin: 5px 5px 0 0;
   border-radius: 5px;
-  background-color: #fff;
-  box-shadow: var(--shadow);
-  border: 2px solid var(--leadingColor2);
-  transition: background 0.3s ease;
-  animation: var(--zoom);
+  background-color: #ffffff;
+  border: 2px solid #f0f0f0;
+  box-shadow: var(--shadow0);
+  transition: background 0.3s ease, border 0.3s ease;
 }
 
 .activeFolderButton {
   background-color: var(--leadingColorHover);
-  transition: background 0.3s ease;
+  border: 2px solid var(--leadingColor2);
+  transition: background 0.3s ease, border 0.3s ease;
 }
 
 .folderContainer {
@@ -505,15 +548,18 @@ input[type="checkbox"]:checked:after {
   margin: 5px 0 0 0;
 }
 
+
+
 .activeFolderContainer { display: block; }
 
 .noteThumbnail {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 150px;
   height: 150px;
+  width: 23%;
   cursor: pointer;
+  overflow: hidden;
   padding: 10px 0 10px 10px;
   margin: 5px 10px 0 0;
   overflow-y: scroll;
@@ -539,7 +585,7 @@ input[type="checkbox"]:checked:after {
   border-radius: 10px;
 }
 
-#lastNotes {
+#quickNotes {
   margin: 10px 0 0 0;
 }
 
@@ -617,9 +663,451 @@ input[type="checkbox"]:checked:after {
   overflow-y: scroll;
 }
 
-#lastNotes .container,
 .folderContainer .container {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  height: 100vh;
+  padding: 0 0 200px 0;
+  overflow-y: scroll;
+}
+
+.folderContainer .container::-webkit-scrollbar-track{ background-color: transparent; }
+
+.folderContainer .container::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+
+.folderContainer .container::-webkit-scrollbar-thumb {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+#quickNotes .container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.workspaceButtons {
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
+
+.workspaceButtons button {
+  margin: 5px 0 0 0;
+}
+
+.workspaceButtonsHidden {
+  transform: translateX(-60px);
+  transition: transform 0.3s ease;
+}
+
+.toolBar {
+  z-index: 1;
+  position: fixed;
+  display: flex;
+  width: 300px;
+  height: 100%;
+  opacity: 1;
+  overflow: hidden;
+  transform: translateX(70px);
+  background-color: #fff;
+  border: 2px solid var(--leadingColor);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.toolBarHidden {
+  opacity: 0;
+  transform: translateX(-370px);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.section1 {
+  padding: 20px 90px 20px 20px;
+  margin: 0 0 0 70px;
+  transition: 0.5s ease;
+}
+
+.section1Animation {
+  margin: 0 0 0 370px;
+  padding: 20px 390px 20px 20px;
+  transition: 0.5s ease;
+}
+
+.buttons { padding: 10px; }
+
+.toolBar .tools button,
+.toolBar .tools a {
+  display: flex;
+  align-items: center;
+  border: 0;
+  width: 100%;
+  height: 30px;
+  padding: 5px;
+  margin: 0 0 2.5px 0;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #000000;
+}
+.toolBar .tools button:hover,
+.toolBar .tools a:hover {
+  background-color: var(--leadingColor);
+}
+
+.toolBar .tools button img,
+.toolBar .tools a img {
+  width: 22px;
+  height: 22px;
+  margin: 0 5px 0 0;
+}
+
+.toolBar .title {
+  padding: 10px;
+  border-bottom: 2px solid var(--leadingColor);
+}
+
+.path {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: 2px solid #f0f0f0;
+}
+
+.workspace .lastEdit,
+.workspace .author {
+  width: 50%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: 2px solid #f0f0f0;
+}
+
+.workspace .lastEdit { margin: 0 5px 0 0; }
+.workspace .author { margin: 0 0 0 5px }
+
+.workspace .elements {
+  display: flex;
+  align-items: center;
+  margin: 5px 0 0 0;
+}
+
+.noteContainer {
+  height: 600px;
+  margin: 5px 0 0 0;
+  padding: 0 0 200px 0;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: 2px solid #f0f0f0;
+  transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+.noteContainer .noteName {
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+}
+
+.noteArea {
+  outline: 0;
+  width: 100%;
+  height: 100vh;
+  padding: 10px;
+  font-size: 16px;
+  overflow-y: scroll;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: 2px solid #f0f0f0;
+  border-right: 0;
+  border-left: 0;
+  transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
+  position: relative;
+}
+
+.noteArea::-webkit-scrollbar {
+  width: 10px;
+}
+
+.noteArea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.noteArea::-webkit-scrollbar-thumb {
+  background: #f0f0f0;
+  border-radius: 5px;
+}
+
+.noteArea ul {
+  list-style: decimal;
+  padding-left: 20px;
+}
+
+.noteArea li {
+  display: list-item;
+}
+
+.noteArea 
+
+li::marker {
+  content: "• ";
+}
+
+.noteContext,
+.folderContext {
+  z-index: 3;
+  display: none;
+  position: absolute;
+  list-style: none;
+  width: 200px;
+  padding: 0;
+  border-radius: 5px;
+  background: #fff;
+  border: 1px solid var(--leadingColor);
+  box-shadow: var(--shadow);
+}
+
+.noteContext li,
+.folderContext li {
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.noteContext li:hover,
+.folderContext li:hover {
+  background: #f0f0f0;
+}
+
+.tool {
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  transform: translateX(300px);
+  transition: transform 0.5s ease;
+  background-color: #ffffff;
+}
+
+.tool .title {
+  display: flex;
+  width: 100%;
+  height: 53.6px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 2px solid var(--leadingColor);
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+.tool .container {
+  width: 100%;
+  padding: 10px;
+}
+
+.back {
+  border: 0;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.back img {
+  width: 30px;
+  height: 30px;
+}
+
+.tools {
+  width: 300px;
+  transition: transform 0.5s ease;
+}
+
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.backgroundColor,
+.textColor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 37px;
+  height: 37px;
+  margin: 2.5px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 3px solid #f0f0f0;
+}
+
+.selected {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  animation: var(--zoom);
+}
+
+#backgroundColor0 {
+  background-color: #ffffff;
+  border: 3px solid #f0f0f0;
+}
+#backgroundColor1 {
+  background-color: #ecb8ff;
+  border: 3px solid #d255ff;
+}
+#backgroundColor2 {
+  background-color: #ffacac;
+  border: 3px solid #ff5151;
+}
+#backgroundColor3 {
+  background-color: #ffc6ac;
+  border: 3px solid #ff7f51;
+}
+#backgroundColor4 {
+  background-color: #acffac;
+  border: 3px solid #51ff57;
+}
+#backgroundColor5 {
+  background-color: #acfff7;
+  border: 3px solid #51ffce;
+}
+#backgroundColor6 {
+  background-color: #e0e0e0;
+  border: 3px solid #a8a8a8;
+}
+#backgroundColor7 {
+  background-color: #9c9c9c;
+  border: 3px solid #5b5b5b;
+}
+#backgroundColor8 {
+  background-color: #f6ffa6;
+  border: 3px solid #fffc40;
+}
+#backgroundColor9 {
+  background-color: #ddffa1;
+  border: 3px solid #baff44;
+}
+#backgroundColor10 {
+  background-color: #acf1ff;
+  border: 3px solid #53c9ff;
+}
+#backgroundColor11 {
+  background-color: #acdeff;
+  border: 3px solid #57bcff;
+}
+#backgroundColor12 {
+  background-color: #f5f5dc;
+  border: 3px solid #ffdca1;
+}
+#backgroundColor13 {
+  background-color: #7f6a4f;
+  border: 3px solid #7a521f;
+}
+
+.selectedBackgroundColor,
+.selectedTextColor {
+  background-color: #f0f0f0;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  animation: zoom 0.3s forwards alternate;
+}
+
+.selectedTextColor { background-color: #000 }
+
+#tool3 .container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#tool3 .container button {
+  border: 0;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 4px;
+  background-color: #ffffff;
+  border: 2px solid #f0f0f0;
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+#tool3 .container button img {
+  width: 44px;
+  height: 44px;
+}
+
+.noteContainer .elements {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.noteContainer .elements div {
+  display: flex;
+  align-items: center;
+}
+
+.noteContainer .elements button {
+  border: 0;
+  background-color: transparent;
+}
+
+.noteContainer .elements button img {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.separator {
+  border: 1px solid var(--leadingColor);
+  margin: 5px 0 5px 0;
+}
+
+#textColor0 {
+  background-color: #4e4e4e;
+  border: 3px solid #000;
+}
+
+.switch {
+  border: 0;
+  outline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 50px;
+  margin: 0 10px 0 0;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.switchElement {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  background-color: #cdcdcd;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.activeSwitchElement {
+  transform: translateX(calc(100%));
+  transition: transform 0.3s ease, background 0.3s ease;
+  background-color: var(--leadingColor);
+}
+
+.activeSwitch {
+  background-color: var(--leadingColorHover);
+  transition: background 0.3s ease;
+}
+
+.switchElements {
+  display: flex;
+  align-items: center;
 }
