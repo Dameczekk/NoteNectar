@@ -49,7 +49,7 @@ function getCookie(name) {
 }
 
 const userDataReload = () => {
-  const path = '/noten.html';
+  const path = '/index.html';
   setCookie('noten_userData', JSON.stringify(userData), path);
   setCookie('noten_foldersData', JSON.stringify(foldersData), path);
   setCookie('noten_accountFolders', JSON.stringify(accountFolders), path);
